@@ -3,7 +3,10 @@
   <div class="black-bg" v-if="modalOpen == true">
     <div class="white-bg">
       <h4>건물소개</h4>
-      <p><b>좋은집입니다</b>.<br/> 선택하시면 후회없습니다.</p>
+      <p> {{ datas[pushed].title }}</p>
+      <img :src="datas[pushed].image" class="romm-img">
+      <p> {{ datas[pushed].price }}</p>
+      <p> {{ datas[pushed].content }}</p>
       <button @click="modalOpen=false">닫기</button>
     </div>
   </div>
@@ -16,7 +19,7 @@
   <div>
     <h4 v-for="(item,i) in datas" :key="i">
       <img :src="item.image" class="romm-img"><br/>
-      <div @click="modalOpen=true" class="name">{{ item.title }}</div>
+      <div @click="modalOpen=true; pushed = [i]" class="name">{{ item.title }}</div>
       <p>{{item.price}}원</p>
     </h4>
     <br/>
@@ -32,6 +35,7 @@ export default {
   name: 'App',
   data () {
     return {
+      pushed : 0,
       price: [50,70,100],
       mainColor : 'color:purple',
       menus: ['Home','Shop','About'],
