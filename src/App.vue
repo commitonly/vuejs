@@ -1,34 +1,37 @@
 <template>
 
-  <div class="black-bg" v-if="modalOpen == true">
-    <div class="white-bg">
-      <h4>건물소개</h4>
-      <p> {{ datas[pushed].title }}</p>
-      <img :src="datas[pushed].image" class="romm-img">
-      <p> {{ datas[pushed].price }}</p>
-      <p> {{ datas[pushed].content }}</p>
-      <button @click="modalOpen=false">닫기</button>
-    </div>
-  </div>
+  <Modal :datas="datas" :pushed="pushed" :modalOpen="modalOpen"/>
+
 
 
   <div class="menu">
     <a v-for="(item,i) in menus" :key="i">{{ item }}</a>
   </div>
 
-  <div>
-    <h4 v-for="(item,i) in datas" :key="i">
-      <img :src="item.image" class="romm-img"><br/>
-      <div @click="modalOpen=true; pushed = [i]" class="name">{{ item.title }}</div>
-      <p>{{item.price}}원</p>
-    </h4>
-    <br/>
-  </div>
+  <Discount/>
+
+<!--  아래는 반복문 -->
+  <Card :datas="datas[i]" v-for="(item, i) in datas" key="i" />
+
+<!--  아래는 하드코딩 -->
+
+<!--  <Card :datas="datas[1]" />-->
+<!--  <Card :datas="datas[2]" />-->
+<!--  <Card :datas="datas[3]" />-->
+<!--  <Card :datas="datas[4]" />-->
+<!--  <Card :datas="datas[5]" />-->
+
+
+
+
 
 </template>
 
 <script>
 import oneroom from "./oneroom"
+import Discount from "./Discount.vue";
+import Modal from "@/Modal.vue";
+import Card from "@/Card.vue";
 
 
 export default {
@@ -49,6 +52,11 @@ export default {
     increase() {
       this.reportNum++;
     },
+  },
+  components: {
+    Discount : Discount,
+    Modal : Modal,
+    Card : Card,
   }
 }
 </script>
@@ -85,6 +93,16 @@ body{
 div{
   box-sizing: border-box;
 }
+
+.discount{
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+
 .black-bg {
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.5);
