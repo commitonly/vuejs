@@ -1,17 +1,24 @@
 <template>
 
-<!--  <div class="start" :class="{end : modalOpen}">-->
-<!--  <Modal @closeModal="modalOpen = false" :datas="datas" :pushed="pushed" :modalOpen="modalOpen"/>-->
-<!--  </div>-->
-  <transition name="fade" >
-  <Modal @closeModal="modalOpen = false" :datas="datas" :pushed="pushed" :modalOpen="modalOpen"/>
-  </transition>>
+  <!--  <div class="start" :class="{end : modalOpen}">-->
+  <!--  <Modal @closeModal="modalOpen = false" :datas="datas" :pushed="pushed" :modalOpen="modalOpen"/>-->
+  <!--  </div>-->
+  <transition name="fade">
+    <Modal @closeModal="modalOpen = false" :datas="datas" :pushed="pushed" :modalOpen="modalOpen"/>
+  </transition>
 
   <div class="menu">
     <a v-for="(item,i) in menus" :key="i">{{ item }}</a>
   </div>
 
-  <Discount/>
+  <Discount v-if="showDiscount == true "/>
+
+  <button @click="priceSort">낮은가격순정렬</button>
+  <br/>
+  <button @click="highPriceSort">높은가격순정렬</button>
+  <br/>
+  <!--  <button @click="abcSort">가나다순정렬</button><br/>-->
+  <button @click="sortBack">초기화</button>
 
   <!--  아래는 반복문 -->
   <Card @modalOpen="modalOpen = true; pushed = $event" :datas="datas[i]" v-for="(item, i) in datas" :key="i"/>
@@ -38,6 +45,8 @@ export default {
   name: 'App',
   data() {
     return {
+      showDiscount: true,
+      datasOrigin: [...oneroom],
       pushed: 0,
       price: [50, 70, 100],
       mainColor: 'color:purple',
@@ -52,7 +61,43 @@ export default {
     increase() {
       this.reportNum++;
     },
+    priceSort() {
+      this.datas.sort(function (a, b) {
+        return a.price - b.price
+      })
+    },
+    sortBack() {
+      this.datas = [...this.datasOrigin];
+    },
+    highPriceSort() {
+      this.datas.sort(function (a, b) {
+        return b.price - a.price
+      })
+    },
+    abcSort() {
+      this.datas(function (a, b) {
+        return a.title - b.title
+      })
+    }
   },
+
+  created() {
+    //html 생성 전 라이프사이클
+
+
+  },
+
+  updated() {
+
+  },
+
+
+
+
+
+
+
+
   components: {
     Discount: Discount,
     Modal: Modal,
@@ -123,11 +168,12 @@ div {
   cursor: pointer;
 }
 
-.start{
+.start {
   opacity: 0;
   transition: all 1s;
 }
-.end{
+
+.end {
   opacity: 1;
 }
 
@@ -137,11 +183,11 @@ div {
 
 }
 
-.fade-enter-active{
+.fade-enter-active {
   transition: all 1s;
 }
 
-.fade-enter-to{
+.fade-enter-to {
   transform: translateY(0px);
 }
 
@@ -150,11 +196,11 @@ div {
 
 }
 
-.fade-leave-active{
+.fade-leave-active {
   transition: all 1s;
 }
 
-.fade-leave-to{
+.fade-leave-to {
   opacity: 0;
 }
 </style>

@@ -31,17 +31,29 @@ export default {
         alert("숫자만 입력해주세요!")
         this.month = 1
       }
-      if (a == 0){
-        alert('1보다 작은 수를 입력할 수 없습니다.')
-        this.month = 1
-      }
+      // if (a == 0){
+      //   alert('1보다 작은 수를 입력할 수 없습니다.')
+      //   this.month = 1
+      // }
     },
   },
   props: {
     datas: Array,
     pushed: Number,
     modalOpen: Boolean,
-  }
+  },
+  methods:{
+    checkNumber(){
+      if (this.month == 2)
+        alert('최소 3개월부터 신청가능해요')
+    }
+  },
+
+
+  updated() {
+    this.checkNumber()
+  },
+
 }
 </script>
 
