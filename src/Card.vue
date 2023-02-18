@@ -18,7 +18,7 @@
 export default {
   name: 'Card',
   props: {
-    datas: Array,
+    datas: Object,
     modalOpen: Boolean,
   },
   methods: {
