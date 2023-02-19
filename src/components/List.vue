@@ -7,10 +7,6 @@
     <h5>{{blog[1].title}}</h5>
     <p>{{ blog[1].date }}</p>
   </div>
-  <div>
-    <h5>{{ blog[2].title }}</h5>
-    <p>{{ blog[2].date }}</p>
-  </div>
 </template>
 
 <script>
