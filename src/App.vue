@@ -5,23 +5,23 @@
       <span class="navbar-brand mb-0 h1">Navbar</span>
     </div>
   </nav>
-  <div class="container">
-    <h5>Vue js 를 이용한 블로그입니다</h5>
-    <p>여러가지를 시도할 생각입니다</p>
-  </div>
+
 
   <router-view :blog="blog"></router-view>
+  <router-view :Home="home"></router-view>
 
 </template>
 
 <script>
 import blog from "@/assets/blog";
+import home from "@/components/Home.vue";
 
 export default {
   name: 'App',
   data() {
     return{
-      blog : blog
+      blog : blog,
+      home : home,
     }
   },
   components: {
