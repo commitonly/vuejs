@@ -15,10 +15,5 @@ export default [
         date: 'April 24, 2019',
         number: 2
     },
-    {
-        title: '셋 째 프로젝트 : 현피 앱',
-        content: '거리를 설정하면 가장 가까운 파이터를 소개해드려요! 서로 싸워보세요',
-        date: 'April 24, 2019',
-        number: 2
-    }
+
 ]
