@@ -8,14 +8,13 @@
   <div class="container">
     <h5>Vue js 를 이용한 블로그입니다</h5>
     <p>여러가지를 시도할 생각입니다</p>
-    <List :blog="blog" />
   </div>
+
+  <router-view :blog="blog"></router-view>
 
 </template>
 
 <script>
-
-import List from "@/components/List.vue";
 import blog from "@/assets/blog";
 
 export default {
@@ -25,7 +24,8 @@ export default {
       blog : blog
     }
   },
-  components: {List}
+  components: {
+  }
 }
 </script>
 
