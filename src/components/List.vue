@@ -8,21 +8,16 @@
     <p>{{ blog[1].date }}</p>
   </div>
   <div>
-    <h5>{{ blog[2].title }}</h5>
-    <p>{{ blog[4].date }}</p>
+    <h5>{{blog[2].title}}</h5>
+    <p>{{ blog[2].date }}</p>
   </div>
+
 </template>
 
 <script>
-import blog from "../assets/blog";
 
 export default {
   name : 'list',
-  methods: {
-    blog() {
-      return blog
-    }
-  },
   props : {
     blog : Array,
   }
