@@ -1,4 +1,4 @@
-# blog
+# Vue Js를 활용하여 인스타그램 만들기 토이프로젝트
 
 ## Project setup
 ```
