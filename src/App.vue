@@ -9,6 +9,7 @@
   <router-link to="/list">리스트페이지</router-link><br/>
   <router-link to="/">홈페이지</router-link><br/>
   <router-link to="/detail">상세페이지</router-link>
+<!--  -->
 
 <div class="mt-4"> <!-- 마진 탑 4 만큼 줘라는 약어 -->
   <router-view :blog="blog"></router-view>
