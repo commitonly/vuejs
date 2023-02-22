@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container />
+  <Container :DataList="DataList" />
 
 <!--  <div class="sample-box">임시 박스</div>-->
 
@@ -24,8 +24,14 @@
 <script>
 
 import container from "@/Container.vue";
+import data from "@/Data";
 export default {
   name: 'App',
+  data(){
+    return{
+      DataList : data,
+    }
+  },
   components: {
     Container : container,
 

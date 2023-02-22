@@ -2,20 +2,22 @@
   <div class="post">
     <div class="post-header">
       <div class="profile"></div>
-      <span class="profile-name">ChanKim</span>
+      <span class="profile-name">{{ DataList.name }}</span>
     </div>
     <div class="post-body"></div>
     <div class="post-content">
-      <p>43 Likes</p>
-      <p><strong>글쓴이아이디</strong> 임시내용</p>
-      <p class="date">May 15</p>
+      <p>{{DataList.likes}} Likes</p>
+      <p><strong>{{ DataList.name }}</strong> {{DataList.content}}</p>
+      <p class="date">{{ DataList.date }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+   DataList : Object,
+  }
 }
 </script>
 
