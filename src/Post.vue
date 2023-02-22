@@ -4,7 +4,7 @@
       <div class="profile"></div>
       <span class="profile-name">{{ DataList.name }}</span>
     </div>
-    <div class="post-body"></div>
+    <div class="post-body" :style="{backgroundImage : `url(${DataList.postImage})`}"></div>
     <div class="post-content">
       <p>{{DataList.likes}} Likes</p>
       <p><strong>{{ DataList.name }}</strong> {{DataList.content}}</p>
