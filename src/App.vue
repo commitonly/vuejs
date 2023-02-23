@@ -9,9 +9,10 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList" />
+  <Container :DataList="DataList"/>
+  <button @click="more">더보기</button>
 
-<!--  <div class="sample-box">임시 박스</div>-->
+  <!--  <div class="sample-box">임시 박스</div>-->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -25,17 +26,44 @@
 
 import container from "@/Container.vue";
 import data from "@/Data";
+import axios from 'axios'
+
+
 export default {
   name: 'App',
-  data(){
-    return{
-      DataList : data,
+  data() {
+    return {
+      DataList: data,
+      count: 0,
     }
   },
   components: {
-    Container : container,
+    Container: container,
 
   },
+  methods: {
+    more() {
+      if (this.count == 0)
+        axios.get('https://codingapple1.github.io/vue/more0.json')
+            .then((result) => {
+              console.log(result.data);
+              this.DataList.push(result.data)
+              this.count++;
+            }).catch(() => {
+          console.log('저런.. 실패해버렸네요..')
+        })
+      if (this.count == 1) {
+        axios.get('https://codingapple1.github.io/vue/more1.json')
+            .then((result) => {
+              console.log('카운트1이라서 성공했습니다!', result.data)
+              this.DataList.push(result.data)
+              this.count = 0;
+            }).catch(() => {
+          console.log('저런.. 실패해버렸네요.. 카운트를 확인하세요!')
+        })
+      }
+    }
+  }
 }
 </script>
 

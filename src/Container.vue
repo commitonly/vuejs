@@ -6,7 +6,6 @@
 
 <script>
 import post from "@/Post.vue";
-import data from "@/Data";
 
 export default {
   components:{
