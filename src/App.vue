@@ -9,17 +9,19 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList" :step="step" />
+  <Container :DataList="DataList" :step="step" :url="url" />
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile"/>
+      <input @change="upload" multiple type="file" id="file" class="inputfile"/>
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+
 
 
   <!--  연습용 버튼 : 각 버튼 클릭시 내용물 바꿔보기 -->
@@ -48,6 +50,7 @@ export default {
       DataList: data,
       count: 0,
       step: 0,
+      url : String,
     }
   },
   components: {
@@ -75,6 +78,13 @@ export default {
           console.log('저런.. 실패해버렸네요.. 카운트를 확인하세요!')
         })
       }
+    },
+    upload(e){
+      let a = e.target.files;
+      console.log(a[0]);
+      let url = URL.createObjectURL(a[0]);
+      console.log(url);
+      this.step++;
     }
   }
 }
