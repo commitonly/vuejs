@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList"/>
+  <Container :DataList="DataList" :step="step" />
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
@@ -20,6 +20,18 @@
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+
+  <!--  연습용 버튼 : 각 버튼 클릭시 내용물 바꿔보기 -->
+  <!--  <div v-if="step == 0">내용0</div>-->
+  <!--  <div v-if="step == 1">내용1</div>-->
+  <!--  <div v-if="step == 2">내용2</div>-->
+  <!--  <button @click="step =  0">버튼0</button>-->
+  <!--  <button @click="step =  1">버튼1</button>-->
+  <!--  <button @click="step =  2">버튼2</button>-->
+  <!--  <div style="margin-top : 500px"></div>-->
+
+
 </template>
 
 <script>
@@ -35,6 +47,7 @@ export default {
     return {
       DataList: data,
       count: 0,
+      step: 0,
     }
   },
   components: {
