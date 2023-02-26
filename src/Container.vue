@@ -18,7 +18,7 @@
   <div v-if="step==2">
     <div class="upload-image" :style="`background-image:url(${url}`"></div>
     <div class="write">
-      <textarea class="write-box" v-model="text" @input="sendText"></textarea>
+      <textarea class="write-box" v-model="message" @input="sendMessage"></textarea>
     </div>
   </div>
 </template>
@@ -27,9 +27,10 @@
 import post from "@/Post.vue";
 
 export default {
+
   data(){
     return{
-      text : '',
+      message: "",
     }
   },
   components: {
@@ -41,8 +42,8 @@ export default {
     url: String,
   },
   methods:{
-    sendText() {
-      this.$emit('text', this.text)
+    sendMessage() {
+      this.$emit('my-event', this.message)
     }
   }
 

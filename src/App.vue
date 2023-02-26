@@ -10,7 +10,7 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList" :step="step" :url="url" @text="receiveText" />
+  <Container :DataList="DataList" :step="step" :url="url" @my-event="handleEvent"/>
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
@@ -46,6 +46,7 @@ import axios from 'axios'
 
 
 export default {
+  emits: ['my-event'],
   name: 'App',
   data() {
     return {
@@ -53,7 +54,6 @@ export default {
       count: 0,
       step: 0,
       url : '',
-      receiveText : '',
 
     }
   },
@@ -83,7 +83,7 @@ export default {
         })
       }
     },
-    publish() {
+    publish(text) {
       let myPost = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
@@ -91,7 +91,7 @@ export default {
         likes: 36,
         date: "May 15",
         liked: false,
-        content: this.receiveText,
+        content: this.message,
         filter: "perpetua"
       };
       this.DataList.unshift(myPost); // 왼쪽 Array에 자료를 넣어주는 코드
@@ -105,8 +105,8 @@ export default {
       this.url = url;
       this.step++;
     },
-    receiveText(text) {
-      this.receiveText = text;
+    handleEvent(dataFromChild) {
+      this.message = dataFromChild;
     }
   }
 }

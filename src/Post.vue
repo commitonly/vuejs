@@ -17,7 +17,7 @@
 export default {
   props: {
    DataList : Object,
-  }
+  },
 }
 </script>
 
