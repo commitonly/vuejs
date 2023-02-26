@@ -4,19 +4,20 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step==1" @click="step++">Next</li>
+      <li v-if="step==2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList" :step="step" :url="url" />
+  <Container :DataList="DataList" :step="step" :url="url" @text="receiveText" />
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input @change="upload" multiple type="file" id="file" class="inputfile"/>
+      <input @change="upload" type="file" id="file" class="inputfile"/>
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -51,7 +52,9 @@ export default {
       DataList: data,
       count: 0,
       step: 0,
-      url : String,
+      url : '',
+      receiveText : '',
+
     }
   },
   components: {
@@ -80,12 +83,30 @@ export default {
         })
       }
     },
-    upload(e){
+    publish() {
+      let myPost = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: "",
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.receiveText,
+        filter: "perpetua"
+      };
+      this.DataList.unshift(myPost); // 왼쪽 Array에 자료를 넣어주는 코드
+      this.step = 0; // 메인페이지로 돌아가기.
+    },
+    upload(e) {
       let a = e.target.files;
       console.log(a[0]);
       let url = URL.createObjectURL(a[0]);
       console.log(url);
+      this.url = url;
       this.step++;
+    },
+    receiveText(text) {
+      this.receiveText = text;
     }
   }
 }

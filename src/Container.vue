@@ -5,7 +5,7 @@
 
   <!-- 필터선택페이지 -->
   <div v-if="step==1">
-    <div class="upload-image" style="background-image: url('url')"></div>
+    <div class="upload-image" :style="`background-image:url(${url}`"></div>
     <div class="filters">
       <div class="filter-1"></div>
       <div class="filter-1"></div>
@@ -16,9 +16,9 @@
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step==2">
-    <div class="upload-image"></div>
+    <div class="upload-image" :style="`background-image:url(${url}`"></div>
     <div class="write">
-      <textarea class="write-box">write!</textarea>
+      <textarea class="write-box" v-model="text" @input="sendText"></textarea>
     </div>
   </div>
 </template>
@@ -27,13 +27,23 @@
 import post from "@/Post.vue";
 
 export default {
+  data(){
+    return{
+      text : '',
+    }
+  },
   components: {
     Post: post,
   },
   props: {
     DataList: Array,
     step: Number,
-    url: Array,
+    url: String,
+  },
+  methods:{
+    sendText() {
+      this.$emit('text', this.text)
+    }
   }
 
 }
