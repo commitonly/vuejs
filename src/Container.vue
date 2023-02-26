@@ -16,7 +16,7 @@
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step==2">
-    <div class="upload-image" :style="`background-image:url(${url}`"></div>
+    <div class="upload-image" @input="sendPhoto" :style="`background-image:url(${url}`"></div>
     <div class="write">
       <textarea class="write-box" v-model="message" @input="sendMessage"></textarea>
     </div>
@@ -44,6 +44,9 @@ export default {
   methods:{
     sendMessage() {
       this.$emit('my-event', this.message)
+    },
+    sendPhoto() {
+      this.$emit('my-photo', this.photo)
     }
   }
 

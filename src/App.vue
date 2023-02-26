@@ -10,7 +10,7 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <Container :DataList="DataList" :step="step" :url="url" @my-event="handleEvent"/>
+  <Container :DataList="DataList" :step="step" :url="url" @my-event="handleEvent" @my-photo="handlePhoto" />
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
@@ -46,7 +46,7 @@ import axios from 'axios'
 
 
 export default {
-  emits: ['my-event'],
+  emits: ['my-event', 'my-photo'],
   name: 'App',
   data() {
     return {
@@ -87,7 +87,7 @@ export default {
       let myPost = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
-        postImage: "",
+        postImage: this.photo,
         likes: 36,
         date: "May 15",
         liked: false,
@@ -107,6 +107,9 @@ export default {
     },
     handleEvent(dataFromChild) {
       this.message = dataFromChild;
+    },
+    handlePhoto(dataFromChildPhoto){
+      this.photo = dataFromChildPhoto;
     }
   }
 }
