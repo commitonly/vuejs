@@ -89,7 +89,7 @@ export default {
       let myPost = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
-        postImage: this.photo,
+        postImage: this.url,
         likes: 36,
         date: "May 15",
         liked: false,

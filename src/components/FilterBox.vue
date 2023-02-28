@@ -1,10 +1,13 @@
 <template>
-  <div class="filter-item"></div>
+  <div class="filter-item" :style="`background-image:url(${url})`"></div>
 </template>
 
 <script>
 export default {
-
+  name : 'filterbox',
+  props: {
+    url : String,
+  }
 }
 </script>
 

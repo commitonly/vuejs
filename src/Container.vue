@@ -2,56 +2,45 @@
   <div v-if="step == 0">
     <Post :DataList="a" v-for="(a,i) in DataList" :key="i"/>
   </div>
+<!-- 게시물이 DataList임 -->
 
   <!-- 필터선택페이지 -->
   <div v-if="step==1">
     <div class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="filters">
-      <FilterBox/>
+      <FilterBox :url="url" v-for="a in Filters" :key="a" />
     </div>
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step==2">
-    <div class="upload-image" @input="sendPhoto" :style="`background-image:url(${url})`"></div>
+    <div class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="write">
-      <textarea class="write-box" v-model="message" @input="sendMessage"></textarea>
+      <textarea class="write-box" @input="$emit('write', $event.target.value)"></textarea>
     </div>
   </div>
 </template>
 
 <script>
 import post from "@/Post.vue";
+import FilterBox from "@/components/FilterBox.vue";
 
 export default {
-  emits: ['myEvent', 'myPhoto'],
 
-  data(){
-    return{
-      message: "",
-    }
-  },
   components: {
     Post: post,
+    FilterBox,
   },
   props: {
     DataList: Array,
     step: Number,
-    url: String,
+    url: String, // 이미지
   },
-  methods:{
-    sendMessage() {
-      this.$emit('my-event', this.message)
-    },
-    sendPhoto(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const photo = reader.result;
-          this.$emit('my-photo', photo);
-        }
-        reader.readAsDataURL(file);
-      }
+  data() {
+    return{
+      Filters :
+      [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson",
+      "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua",
+      "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
     }
   }
 
