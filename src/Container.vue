@@ -7,11 +7,7 @@
   <div v-if="step==1">
     <div class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="filters">
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
+      <FilterBox/>
     </div>
   </div>
   <!-- 글작성페이지 -->
