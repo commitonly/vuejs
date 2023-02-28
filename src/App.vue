@@ -5,7 +5,7 @@
     </ul>
     <ul class="header-button-right">
       <li v-if="step==1" @click="step++">Next</li>
-      <li v-if="step==2" @click="publish">발행</li>
+      <li v-if="step==2" @click="publish">발행</li> <!-- 이미지가 왜 안들어가지? -->
     </ul>
     <img src="./assets/logo.png" class="logo"/>
   </div>
@@ -83,7 +83,7 @@ export default {
         })
       }
     },
-    publish(text) {
+    publish() {
       let myPost = {
         name: "Kim Hyun",
         userImage: "https://placeimg.com/100/100/arch",
