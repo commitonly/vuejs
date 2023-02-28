@@ -5,7 +5,7 @@
 
   <!-- 필터선택페이지 -->
   <div v-if="step==1">
-    <div class="upload-image" :style="`background-image:url(${url}`"></div>
+    <div class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="filters">
       <div class="filter-1"></div>
       <div class="filter-1"></div>
@@ -16,7 +16,7 @@
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step==2">
-    <div class="upload-image" @input="sendPhoto" :style="`background-image:url(${url}`"></div>
+    <div class="upload-image" @input="sendPhoto" :style="`background-image:url(${url})`"></div>
     <div class="write">
       <textarea class="write-box" v-model="message" @input="sendMessage"></textarea>
     </div>
@@ -27,6 +27,7 @@
 import post from "@/Post.vue";
 
 export default {
+  emits: ['myEvent', 'myPhoto'],
 
   data(){
     return{
@@ -45,8 +46,16 @@ export default {
     sendMessage() {
       this.$emit('my-event', this.message)
     },
-    sendPhoto() {
-      this.$emit('my-photo', this.photo)
+    sendPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const photo = reader.result;
+          this.$emit('my-photo', photo);
+        }
+        reader.readAsDataURL(file);
+      }
     }
   }
 

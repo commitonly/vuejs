@@ -54,6 +54,8 @@ export default {
       count: 0,
       step: 0,
       url : '',
+      photo : '',
+      message : '',
 
     }
   },
