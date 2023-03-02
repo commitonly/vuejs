@@ -1,12 +1,26 @@
 <template>
-  <div class="filter-item" :style="`background-image:url(${url})`"></div>
+  <div :class="filter + ' filter-item'" :style="`background-image:url(${url})` ">
+    <!--    공간을 열어두는 것 name 슬롯으로 여러개의 공간 만들기-->
+<!--    <slot name="a"></slot>-->
+<!--    <slot name="b"></slot>-->
+<!--    <slot :msg="msg"></slot>-->
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 export default {
-  name : 'filterbox',
+  name: 'filterbox',
+  data() {
+    return {
+      msg : 'hello'
+    }
+  },
+
+
   props: {
-    url : String,
+    url: String,
+    filter: String,
   }
 }
 </script>
@@ -18,8 +32,8 @@ export default {
   margin: 10px 10px 10px auto;
   padding: 8px;
   display: inline-block;
-  color : white;
+  color: white;
   background-size: cover;
-  background-position : center;
+  background-position: center;
 }
 </style>

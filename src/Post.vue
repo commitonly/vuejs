@@ -3,6 +3,7 @@
     <div class="post-header">
       <div class="profile"></div>
       <span class="profile-name">{{ DataList.name }}</span>
+<!--      <span class="profile-name"><slot></slot></span>-->
     </div>
     <div class="post-body" :style="{backgroundImage : `url(${DataList.postImage})`}"></div>
     <div class="post-content">
