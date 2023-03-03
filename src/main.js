@@ -6,4 +6,4 @@ let app = createApp(App)
 app.config.globalProperties.emitter = emitter;
 
 
-app.mount('#app')
+createApp(App).mount('#app')
