@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
+  <h4>안녕 {{ $store.state.name }}</h4>
+<!--  원래는 이렇게 직접 수정하면 추적이 힘들어서 국룰에 따라서 수정을 직접하지 않는다. -->
+  <button @click="$store.state.name= '박' ">버튼</button>
   <Container :DataList="DataList" :step="step" :url="url" @my-event="handleEvent" @my-photo="handlePhoto" />
   <button @click="more">더보기</button>
 
@@ -46,7 +49,7 @@ import axios from 'axios'
 
 
 export default {
-  emits: ['my-event', 'my-photo'],
+  emits: ['my-event', 'my-photo', 'write'],
   name: 'App',
   data() {
     return {
@@ -56,8 +59,15 @@ export default {
       url : '',
       photo : '',
       message : '',
+      chooseFilter : '',
 
     }
+  },
+
+  mounted() {
+    this.emitter.on('clickBox',(a)=>{
+      this.chooseFilter= a
+    })
   },
   components: {
     Container: container,
@@ -94,7 +104,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.message,
-        filter: "perpetua"
+        filter: this.chooseFilter
       };
       this.DataList.unshift(myPost); // 왼쪽 Array에 자료를 넣어주는 코드
       this.step = 0; // 메인페이지로 돌아가기.

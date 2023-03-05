@@ -5,5 +5,6 @@ let emitter = mitt();
 let app = createApp(App)
 app.config.globalProperties.emitter = emitter;
 
+import store from "@/store";
 
-app.mount('#app')
+app.use(store).mount('#app')

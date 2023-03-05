@@ -6,7 +6,7 @@
 
   <!-- 필터선택페이지 -->
   <div v-if="step==1">
-    <div class="upload-image" :style="`background-image:url(${url})`"></div>
+    <div :class="chooseFilter" class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="filters">
       <FilterBox :filter="filter" :url="url" v-for="filter in Filters" :key="filter">
         <!--        이렇게 열고 닫고 해주면 그 사이에 slot을 써서 원하는 데이터를 넣을 수 있다.  -->
@@ -22,7 +22,7 @@
   </div>
   <!-- 글작성페이지 -->
   <div v-if="step==2">
-    <div class="upload-image" :style="`background-image:url(${url})`"></div>
+    <div :class="chooseFilter" class="upload-image" :style="`background-image:url(${url})`"></div>
     <div class="write">
       <textarea class="write-box" @input="$emit('write', $event.target.value)"></textarea>
     </div>
@@ -34,7 +34,7 @@ import post from "@/Post.vue";
 import FilterBox from "@/components/FilterBox.vue";
 
 export default {
-
+  emits: ['my-event', 'my-photo', 'write'],
   components: {
     Post: post,
     FilterBox,
@@ -50,7 +50,13 @@ export default {
           ["aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson",
             "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua",
             "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+      chooseFilter : '',
     }
+  },
+  mounted() {
+    this.emitter.on('clickBox',(a)=>{
+      this.chooseFilter= a
+    })
   }
 
 }
