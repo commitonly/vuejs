@@ -11,9 +11,15 @@
   </div>
 
   <h4>안녕 {{ $store.state.name }}</h4>
+  <h4>내 나이는 : {{$store.state.age}}</h4>
+
 <!--  원래는 이렇게 직접 수정하면 추적이 힘들어서 국룰에 따라서 수정을 직접하지 않는다. -->
-  <button @click="$store.state.name= '박' ">버튼</button>
-  <Container :DataList="DataList" :step="step" :url="url" @my-event="handleEvent" @my-photo="handlePhoto" />
+<!--  <button @click="$store.state.name= '박' ">버튼</button>-->
+  <button @click="$store.commit('changeName')">이름변경</button>
+<!--  <button @click="$store.commit('changeAge')">나이변경</button>-->
+  <button @click="$store.commit('changeAge', 10)">나이변경</button>
+
+  <Container  :DataList="DataList" :step="step" :url="url" @my-event="handleEvent" @my-photo="handlePhoto" />
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
