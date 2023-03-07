@@ -6,10 +6,22 @@ const store = createStore({
             name : 'kim',
             age : 20,
             likes : 30,
+            LikesState : false,
         }
     },
     // state 수정 정의하는 곳
     mutations : {
+        changeLikes(state){
+            if (state.LikesState == false){
+                state.likes++
+                state.LikesState = true;
+            }else {
+                state.likes--;
+                state.LikesState = false;
+            }
+
+        },
+
         changeName(state){
             state.name = 'park'
         },

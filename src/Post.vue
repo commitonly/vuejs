@@ -5,9 +5,9 @@
       <span class="profile-name">{{ DataList.name }}</span>
       <!--      <span class="profile-name"><slot></slot></span>-->
     </div>
-    <div :class="DataList.filter" class="post-body" :style="{backgroundImage : `url(${DataList.postImage})`}"></div>
+    <div @click="$store.commit('changeLikes')" :class="DataList.filter" class="post-body" :style="{backgroundImage : `url(${DataList.postImage})`}"></div>
     <div class="post-content">
-      <p>{{ DataList.likes }} Likes</p>
+      <p>{{ $store.state.likes }} Likes</p>
       <p><strong>{{ DataList.name }}</strong> {{ DataList.content }}</p>
       <p class="date">{{ DataList.date }}</p>
     </div>
