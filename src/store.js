@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import axios from "axios";
 
 const store = createStore({
     state(){
@@ -7,10 +8,14 @@ const store = createStore({
             age : 20,
             likes : 30,
             LikesState : false,
+            more : {},
         }
     },
     // state 수정 정의하는 곳
     mutations : {
+        setMore(state, data){
+            state.more = data
+        },
         changeLikes(state){
             if (state.LikesState == false){
                 state.likes++
@@ -30,9 +35,18 @@ const store = createStore({
         },
         likesToggle(state){
             state.likes++;
-        }
+        },
 
-    }
+
+    },
+    actions : {
+        getDate(context){
+            axios.get('https://codingapple1.github.io/vue/more0.json').then((a)=>{
+                console.log(a.data);
+                context.commit('setMore', a.data);
+            })
+        }
+    },
 
 
 })
