@@ -10,13 +10,24 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
+  <p>{{name}} {{age}} {{likes}}</p>
+  <p> {{ 작명 }}</p>
+
+<!-- ...map 으로 간단하게 줄여보기 -->
   <h4>안녕 {{ $store.state.name }}</h4>
+  <button @click="likesToggle()">버튼</button>
   <h4>내 나이는 : {{$store.state.age}}</h4>
 
   <p>{{ $store.state.more }}</p>
   <!--  commit은 actions를 불러달라는 부탁 -->
   <button @click="$store.dispatch('getDate')">더보기버튼</button>
 
+  <!--  <h4>안녕 {{ $store.state.name }}</h4>-->
+  <!--  <h4>내 나이는 : {{$store.state.age}}</h4>-->
+
+  <!--  <p>{{ $store.state.more }}</p>-->
+  <!--  &lt;!&ndash;  commit은 actions를 불러달라는 부탁 &ndash;&gt;-->
+  <!--  <button @click="$store.dispatch('getDate')">더보기버튼</button>-->
 
 <!--  원래는 이렇게 직접 수정하면 추적이 힘들어서 국룰에 따라서 수정을 직접하지 않는다. -->
 <!--  <button @click="$store.state.name= '박' ">버튼</button>-->
@@ -29,6 +40,8 @@
   <button @click="more">더보기</button>
 
   <!--  <div class="sample-box">임시 박스</div>-->
+<!--  <p>{{ now2 }} {{counter}}</p>-->
+<!--  <button @click="counter++">버튼</button>-->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -58,6 +71,7 @@
 import container from "@/Container.vue";
 import data from "@/Data";
 import axios from 'axios'
+import {mapMutations, mapState} from "vuex";
 
 
 export default {
@@ -72,7 +86,7 @@ export default {
       photo : '',
       message : '',
       chooseFilter : '',
-
+      counter : 0,
     }
   },
 
@@ -85,7 +99,42 @@ export default {
     Container: container,
 
   },
+  // computed는 사용해도 실행되지 않는다.
+  // 처음실행하고 값을 간직했다가 필요할 때 저장했다가 계속 던져주는 것이지 계속 실행되는 것은 아니다.
+  // 데이터를 저장하는 공간이라고 생각하는게 좋다. 성능적으로 저장되었다가 필요할 때 꺼내쓰니까 자원절약이된다.
+  // computed는 뱉어야하기 때문에 return을 꼭 적어줘야한다.
+  computed : {
+    // now2(){
+    //   return new Date()
+    // },
+    //
+    // name(){
+    //   return this.$store.state.name
+    // },
+    // age(){
+    //   return this.$store.state.age
+    // },
+    // 위에서 길게 느려트려 쓴 코드를 여기에 담아서 짧에 mapState로 담아서 코드를 줄일 수 있다.
+    // ...mapState([]),
+    ...mapState(['name','age','likes']),
+    // 이름을 짓고 싶을 때 이렇게 오브젝트 형태로 쓰면된다.
+    ...mapState({ 작명 : 'name'})
+
+
+  },
+  // method 안에있는 함수는 사용할때 마다 실행됨
+
   methods: {
+    // vuex mutations 한번에 꺼내쓰는 방법은?
+    ...mapMutations(['setMore','likesToggle']),
+
+
+
+    // now(){
+    //   //현재 시간 알려주는 코드
+    //   return new Date()
+    // },
+
     more() {
       if (this.count == 0)
         axios.get('https://codingapple1.github.io/vue/more0.json')
