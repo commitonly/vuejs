@@ -27,15 +27,23 @@
       <textarea class="write-box" @input="$emit('write', $event.target.value)"></textarea>
     </div>
   </div>
+
+  <div v-if="step==3">
+    <MyPage/>
+  </div>
+
+
 </template>
 
 <script>
 import post from "@/Post.vue";
 import FilterBox from "@/components/FilterBox.vue";
+import MyPage from "@/MyPage.vue";
 
 export default {
   emits: ['my-event', 'my-photo', 'write'],
   components: {
+    MyPage,
     Post: post,
     FilterBox,
   },

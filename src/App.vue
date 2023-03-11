@@ -10,17 +10,17 @@
     <img src="./assets/logo.png" class="logo"/>
   </div>
 
-  <p>{{name}} {{age}} {{likes}}</p>
-  <p> {{ 작명 }}</p>
+<!--  <p>{{name}} {{age}} {{likes}}</p>-->
+<!--  <p> {{ 작명 }}</p>-->
 
 <!-- ...map 으로 간단하게 줄여보기 -->
-  <h4>안녕 {{ $store.state.name }}</h4>
-  <button @click="likesToggle()">버튼</button>
-  <h4>내 나이는 : {{$store.state.age}}</h4>
+<!--  <h4>안녕 {{ $store.state.name }}</h4>-->
+<!--  <button @click="likesToggle()">버튼</button>-->
+<!--  <h4>내 나이는 : {{$store.state.age}}</h4>-->
 
-  <p>{{ $store.state.more }}</p>
-  <!--  commit은 actions를 불러달라는 부탁 -->
-  <button @click="$store.dispatch('getDate')">더보기버튼</button>
+<!--  <p>{{ $store.state.more }}</p>-->
+<!--  &lt;!&ndash;  commit은 actions를 불러달라는 부탁 &ndash;&gt;-->
+<!--  <button @click="$store.dispatch('getDate')">더보기버튼</button>-->
 
   <!--  <h4>안녕 {{ $store.state.name }}</h4>-->
   <!--  <h4>내 나이는 : {{$store.state.age}}</h4>-->
@@ -37,7 +37,7 @@
 <!--  <button @click="$store.commit('changeAge', 10)">나이변경</button>-->
 
   <Container  :DataList="DataList" :step="step" :url="url" @my-event="handleEvent" @my-photo="handlePhoto" />
-  <button @click="more">더보기</button>
+<!--  <button @click="more">더보기</button>-->
 
   <!--  <div class="sample-box">임시 박스</div>-->
 <!--  <p>{{ now2 }} {{counter}}</p>-->
@@ -79,9 +79,9 @@ export default {
   name: 'App',
   data() {
     return {
+      step: 3,
       DataList: data,
       count: 0,
-      step: 0,
       url : '',
       photo : '',
       message : '',

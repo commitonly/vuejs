@@ -1,9 +1,3 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true,
-  lintOnSave: false
-})
-
 module.exports = {
   pwa: {
     name: '님 앱이름',
@@ -14,3 +8,10 @@ module.exports = {
     }
   }
 }
+
+
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  lintOnSave: false
+})
